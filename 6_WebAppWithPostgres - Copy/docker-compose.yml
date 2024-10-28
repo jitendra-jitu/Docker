@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"  # Ensure the container port matches the server.port in application.properties
+    networks:
+      - multiple-network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: jitu
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: telusko
+    ports:
+      - "5433:5432"
+    networks:
+      - multiple-network

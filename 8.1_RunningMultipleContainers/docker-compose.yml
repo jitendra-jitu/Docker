@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - student-network
+
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: jitu
+      POSTGRES_PASSWORD: 1234  # Fixed typo in environment variable
+      POSTGRES_DB: telusko
+    ports:
+      - "5433:5432"  # Corrected the port mapping
+    networks:
+      - student-network
+
+
+networks:
+  student-network:
+    driver: bridge
+
+
